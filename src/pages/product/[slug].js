@@ -7,6 +7,7 @@ import data from 'utils/data';
 import { Store } from 'utils/Store';
 
 function ProductSreen() {
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
 
@@ -25,6 +26,8 @@ function ProductSreen() {
       type: 'CART_ADD_ITEM',
       payload: { ...product, quantity },
     });
+
+    router.push('/cart');
 
     await console.log('addToCartHandler', state);
   };
