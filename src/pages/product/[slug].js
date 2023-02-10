@@ -2,14 +2,32 @@ import Layout from '@/components/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useContext } from 'react';
 import data from 'utils/data';
+import { Store } from 'utils/Store';
 
 function ProductSreen() {
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((x) => x.slug === slug);
   if (!product) return <div>Product Not Found</div>;
+
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x.slug === product.slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    if (product.countInStock < quantity)
+      return alert('Sorry, products out of stock');
+
+    dispatch({
+      type: 'CART_ADD_ITEM',
+      payload: { ...product, quantity },
+    });
+
+    await console.log('addToCartHandler', state);
+  };
 
   return (
     <Layout title={product.name}>
@@ -52,7 +70,12 @@ function ProductSreen() {
               <div>Status</div>
               <div>{product.countInStock > 0 ? 'In stock' : 'Unavailable'}</div>
             </div>
-            <button className="primary-button w-full">Add to cart</button>
+            <button
+              onClick={addToCartHandler}
+              className="primary-button w-full"
+            >
+              Add to cart
+            </button>
           </div>
         </div>
       </div>
