@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
-import { Store } from 'utils/Store';
+import { Store } from '@/utils/Store';
 
 function Layout({ title, children }) {
   const { state, dispatch } = useContext(Store);

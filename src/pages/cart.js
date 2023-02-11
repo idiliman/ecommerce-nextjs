@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useContext } from 'react';
-import { Store } from 'utils/Store';
+import { Store } from '@/utils/Store';
 import { FiXCircle } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
