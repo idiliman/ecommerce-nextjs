@@ -5,6 +5,7 @@ import React, { useContext } from 'react';
 import { Store } from 'utils/Store';
 import { FiXCircle } from 'react-icons/fi';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 
 function CartScreen() {
   const router = useRouter();
@@ -108,4 +109,5 @@ function CartScreen() {
   );
 }
 
-export default CartScreen;
+// Use dynamic to resolve ERROR: 'Hydration failed'. This happens bcs there is no cookies in the server but there is in the client side.
+export default dynamic(() => Promise.resolve(CartScreen), { ssr: false });
