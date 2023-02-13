@@ -21,4 +21,13 @@ const handler = async (req, res) => {
   res.send({ message: 'Seeded successfully' });
 };
 
+// Delete data in DB
+// const handler = async (req, res) => {
+//   await db.connect();
+//   await Product.deleteMany();
+//   // await User.deleteMany();
+//   await db.disconnect();
+//   res.send({ message: 'Deleted successfully' });
+// };
+
 export default handler;

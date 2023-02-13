@@ -76,6 +76,7 @@ function reducer(state, action) {
   }
 }
 
+// useContext things, passing through all components/children
 export function StoreProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const value = { state, dispatch };
