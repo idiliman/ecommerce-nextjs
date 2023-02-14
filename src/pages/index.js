@@ -7,12 +7,16 @@ import { Store } from '@/utils/Store';
 import axios from 'axios';
 import { useContext } from 'react';
 import { toast } from 'react-toastify';
+// // import { useSession } from 'next-auth/react';
 
 // TODO: Out of stock item only when user checkout
 
 export default function Home({ products }) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
+
+  // const { status, data: session } = useSession();
+  // console.log('From index', session?.user.image);
 
   const addToCartHandler = async (product) => {
     const existItem = cart.cartItems.find((x) => x.slug === product.slug);
